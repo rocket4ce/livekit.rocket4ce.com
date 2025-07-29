@@ -23,8 +23,6 @@ services:
     network_mode: "host"
     volumes:
       - redis_data:/data
-    sysctls:
-      - net.core.somaxconn=65535
     deploy:
       resources:
         limits:
