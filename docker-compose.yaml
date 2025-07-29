@@ -3,17 +3,19 @@
 services:
   caddy:
     image: livekit/caddyl4
-    command: run --config /etc/caddy.yaml --adapter yaml
     restart: unless-stopped
     network_mode: "host"
+    environment:
+      - CADDY_CONFIG_FILE=/etc/caddy.yaml
     volumes:
       - ./caddy.yaml:/etc/caddy.yaml
       - caddy_data:/data
   livekit:
     image: livekit/livekit-server:latest
-    command: --config /etc/livekit.yaml
     restart: unless-stopped
     network_mode: "host"
+    environment:
+      - LIVEKIT_CONFIG_FILE=/etc/livekit.yaml
     volumes:
       - ./livekit.yaml:/etc/livekit.yaml
   redis:
@@ -29,18 +31,20 @@ services:
           memory: 512M
   egress:
     image: livekit/egress:latest
-    command: --config /etc/egress.yaml
     restart: unless-stopped
     network_mode: "host"
+    environment:
+      - EGRESS_CONFIG_FILE=/etc/egress.yaml
     volumes:
       - ./egress.yaml:/etc/egress.yaml
     cap_add:
       - CAP_SYS_ADMIN
   ingress:
     image: livekit/ingress:latest
-    command: --config /etc/ingress.yaml
     restart: unless-stopped
     network_mode: "host"
+    environment:
+      - INGRESS_CONFIG_FILE=/etc/ingress.yaml
     volumes:
       - ./ingress.yaml:/etc/ingress.yaml
 
