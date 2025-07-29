@@ -7,15 +7,15 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./caddy.yaml:/etc/caddy.yaml:ro
-      - ./caddy_data:/data
+      - ./caddy.yaml:/etc/caddy.yaml
+      - caddy_data:/data
   livekit:
     image: livekit/livekit-server:latest
     command: --config /etc/livekit.yaml
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./livekit.yaml:/etc/livekit.yaml:ro
+      - ./livekit.yaml:/etc/livekit.yaml
   redis:
     image: redis:7-alpine
     command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./egress.yaml:/etc/egress.yaml:ro
+      - ./egress.yaml:/etc/egress.yaml
     cap_add:
       - CAP_SYS_ADMIN
   ingress:
@@ -42,7 +42,8 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./ingress.yaml:/etc/ingress.yaml:ro
+      - ./ingress.yaml:/etc/ingress.yaml
 
 volumes:
   redis_data:
+  caddy_data:
