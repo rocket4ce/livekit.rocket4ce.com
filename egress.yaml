@@ -1,0 +1,15 @@
+redis:
+    address: localhost:6379
+    username: ""
+    password: ""
+    db: 0
+    use_tls: false
+    sentinel_master_name: ""
+    sentinel_username: ""
+    sentinel_password: ""
+    sentinel_addresses: []
+    cluster_addresses: []
+    max_redirects: null
+api_key: APIWmQgEonLB2FP
+api_secret: 3Ce7au9gn0gSzpL4vmq1C80M1y4m4Se1snSJhDJWcLM
+ws_url: wss://livekit.rocket4ce.com
